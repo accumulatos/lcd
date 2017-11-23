@@ -58,7 +58,7 @@ let LCD = {
     // **`lcd.print(value)`**
     // Print a string representation of value (if not a string already)
     print: function(value) {
-      let str = JSON.stringify(value);
+      let str = (typeof value === "string") ? value : JSON.stringify(value);
       LCD._p(this.lcd, str, str.length);
     },
     // **`lcd.clear()`**
