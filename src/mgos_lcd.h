@@ -28,10 +28,11 @@
 #ifndef __RGB_LCD_H__
 #define __RGB_LCD_H__
 
-#include "fw/src/mgos.h"
-#include "mgos_system.h"
 #include <stdio.h>
 #include <float.h>
+#include "fw/src/mgos.h"
+#include "mgos_system.h"
+#include "mgos_i2c.h"
 
 // Device I2C Arress
 #define LCD_ADDRESS     (0x7c>>1)

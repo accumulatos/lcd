@@ -49,7 +49,7 @@ struct mgos_lcd *mgos_lcd_create(uint8_t columns, uint8_t lines,
   lcd->display_mode = 0;
 
   if (lines > 1) {
-    lcd->display_fuction |= LCD_2LINE
+    lcd->display_fuction |= LCD_2LINE;
   }
 
   // for some 1 line displays you can select a 10 pixel high font
@@ -78,7 +78,7 @@ struct mgos_lcd *mgos_lcd_create(uint8_t columns, uint8_t lines,
 
   // turn the display on with no cursor or blinking by default
   lcd->display_control = LCD_DISPLAYON | LCD_CURSOROFF | LCD_BLINKOFF;
-  mgos_lcd_display(lcd);
+  mgos_lcd_display_on(lcd);
 
   // clear the displau
   mgos_lcd_clear(lcd);
@@ -97,7 +97,9 @@ struct mgos_lcd *mgos_lcd_create(uint8_t columns, uint8_t lines,
   mgos_i2c_write_reg_b(lcd->conn, REG_MODE2, 0x20);
 
   // set the RGB backlight to white (for some reason)
-  mgos_lcd_set_gdb(lcd, 255, 255, 255);
+  mgos_lcd_set_rgb(lcd, 255, 255, 255);
+
+  return lcd;
 }
 
 void mgos_lcd_print_char(struct mgos_lcd *lcd, char c) {
