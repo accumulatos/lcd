@@ -134,7 +134,7 @@ void mgos_lcd_create_char(struct mgos_lcd *lcd, uint8_t location,
         uint8_t charmap[]);
 void mgos_lcd_blink_led_on(struct mgos_lcd *lcd);
 void mgos_lcd_blink_led_off(struct mgos_lcd *lcd);
-void mgos_lcd_close(struct mgos_lcd **lcd);
+void mgos_lcd_close(struct mgos_lcd *lcd);
 void mgos_lcd_set_rgb(struct mgos_lcd *lcd, uint8_t r, uint8_t g, uint8_t b);
 void mgos_lcd_set_pwm(struct mgos_lcd *lcd, uint8_t color_reg, uint8_t value);
 

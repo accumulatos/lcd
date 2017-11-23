@@ -271,9 +271,8 @@ void mgos_lcd_blink_led_off(struct mgos_lcd *lcd) {
   mgos_i2c_write_reg_b(lcd->conn, RGB_ADDRESS, 0x06, 0xff);
 }
 
-void mgos_lcd_close(struct mgos_lcd **lcd) {
-  free(*lcd);
-  *lcd = NULL;
+void mgos_lcd_close(struct mgos_lcd *lcd) {
+  free(lcd);
 }
 
 void mgos_lcd_set_rgb(struct mgos_lcd *lcd, uint8_t r, uint8_t g, uint8_t b) {
