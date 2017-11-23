@@ -27,8 +27,8 @@
 
 #include "mgos_lcd.h"
 
-enum mgos_app_init_result mgos_lcd_init() {
-  return MGOS_APP_INIT_SUCCESS;
+bool mgos_lcd_init(void) {
+  return true;
 }
 
 /* columns is never actually used in the Arduino library but it seems to be
@@ -261,8 +261,8 @@ void mgos_lcd_blink_led_on(struct mgos_lcd *lcd) {
   if (lcd == NULL) return;
   // blink period in seconds = (<reg 7> + 1) / 24
   // on/off ratio = <reg 6> / 256
-  mgos_i2c_write_reg_b(lcd->conn, RGB_ADDRESS, 0x07, 0x17);  // blink every second
-  mgos_i2c_write_reg_b(lcd->conn, RGB_ADDRESS, 0x06, 0x7f);  // half on, half off
+  mgos_i2c_write_reg_b(lcd->conn, RGB_ADDRESS, 0x07, 0x17);  // blink every 1s
+  mgos_i2c_write_reg_b(lcd->conn, RGB_ADDRESS, 0x06, 0x7f);  // 50% duty cycle
 }
 
 void mgos_lcd_blink_led_off(struct mgos_lcd *lcd) {
