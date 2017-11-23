@@ -89,12 +89,12 @@ struct mgos_lcd *mgos_lcd_create(uint8_t columns, uint8_t lines,
   mgos_lcd_command(lcd, LCD_ENTRYMODESET | lcd->display_mode);
 
   // initialise backlight
-  mgos_i2c_write_reg_b(lcd->conn, REG_MODE1, 0x00);
+  mgos_i2c_write_reg_b(lcd->conn, RGB_ADDRESS, REG_MODE1, 0x00);
   // set LEDs controllable by both PWM and GRPPWM registers
-  mgos_i2c_write_reg_b(lcd->conn, REG_OUTPUT, 0xFF);
+  mgos_i2c_write_reg_b(lcd->conn, RGB_ADDRESS, REG_OUTPUT, 0xFF);
   // set MODE2 values
   // 0010 0000 -> 0x20  (DMBLNK to 1, ie blinky mode)
-  mgos_i2c_write_reg_b(lcd->conn, REG_MODE2, 0x20);
+  mgos_i2c_write_reg_b(lcd->conn, RGB_ADDRESS, REG_MODE2, 0x20);
 
   // set the RGB backlight to white (for some reason)
   mgos_lcd_set_rgb(lcd, 255, 255, 255);
@@ -261,14 +261,14 @@ void mgos_lcd_blink_led_on(struct mgos_lcd *lcd) {
   if (lcd == NULL) return;
   // blink period in seconds = (<reg 7> + 1) / 24
   // on/off ratio = <reg 6> / 256
-  mgos_i2c_write_reg_b(lcd->conn, 0x07, 0x17);  // blink every second
-  mgos_i2c_write_reg_b(lcd->conn, 0x06, 0x7f);  // half on, half off
+  mgos_i2c_write_reg_b(lcd->conn, RGB_ADDRESS, 0x07, 0x17);  // blink every second
+  mgos_i2c_write_reg_b(lcd->conn, RGB_ADDRESS, 0x06, 0x7f);  // half on, half off
 }
 
 void mgos_lcd_blink_led_off(struct mgos_lcd *lcd) {
   if (lcd == NULL) return;
-  mgos_i2c_write_reg_b(lcd->conn, 0x07, 0x00);
-  mgos_i2c_write_reg_b(lcd->conn, 0x06, 0xff);
+  mgos_i2c_write_reg_b(lcd->conn, RGB_ADDRESS, 0x07, 0x00);
+  mgos_i2c_write_reg_b(lcd->conn, RGB_ADDRESS, 0x06, 0xff);
 }
 
 void mgos_lcd_close(struct mgos_lcd **lcd) {
@@ -278,14 +278,14 @@ void mgos_lcd_close(struct mgos_lcd **lcd) {
 
 void mgos_lcd_set_rgb(struct mgos_lcd *lcd, uint8_t r, uint8_t g, uint8_t b) {
   if (lcd == NULL) return;
-  mgos_i2c_write_reg_b(lcd->conn, REG_RED, r);
-  mgos_i2c_write_reg_b(lcd->conn, REG_GREEN, g);
-  mgos_i2c_write_reg_b(lcd->conn, REG_BLUE, b);
+  mgos_i2c_write_reg_b(lcd->conn, RGB_ADDRESS, REG_RED, r);
+  mgos_i2c_write_reg_b(lcd->conn, RGB_ADDRESS, REG_GREEN, g);
+  mgos_i2c_write_reg_b(lcd->conn, RGB_ADDRESS, REG_BLUE, b);
 }
 
 void mgos_lcd_set_pwm(struct mgos_lcd *lcd, uint8_t color_reg, uint8_t value) {
   if (lcd == NULL) return;
-  mgos_i2c_write_reg_b(lcd->conn, color_reg, value);
+  mgos_i2c_write_reg_b(lcd->conn, RGB_ADDRESS, color_reg, value);
 }
 
 /****** Lower level library commands, advanced users only ******/
