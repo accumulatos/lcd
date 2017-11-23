@@ -8,26 +8,26 @@ let LCD = {
   // keep these variable names under 5 chars to minimise memory usage
   _crt: ffi('void *mgos_lcd_create(int, int, int)'),
   _cls: ffi('void mgos_lcd_close(void *)'),
-  _p:   ffi('void mgos_lcd_print_string(void *, char *, int)');
-  _clr: ffi('void mgos_lcd_clear(void *)');
-  _ch:  ffi('void mgos_lcd_cursor_home(void *)');
-  _sc:  ffi('void mgos_lcd_set_cursor(void *, int, int)');
-  _dof: ffi('void mgos_lcd_display_off(void *)');
-  _don: ffi('void mgos_lcd_display_on(void *)');
-  _cof: ffi('void mgos_lcd_cursor_off(void *)');
-  _con: ffi('void mgos_lcd_cursor_on(void *)');
-  _bcof: ffi('void mgos_lcd_blink_cursor_off(void *)');
-  _bcon: ffi('void mgos_lcd_blink_cursor_on(void *)');
-  _sdl: ffi('void mgos_lcd_scroll_display_left(void *)');
-  _sdr: ffi('void mgos_lcd_scroll_display_right(void *)');
-  _ltr: ffi('void mgos_lcd_set_ltr(void *)');
-  _rtl: ffi('void mgos_lcd_set_rtl(void *)');
-  _rjst: ffi('void mgos_lcd_right_justify(void *)');
-  _ljst: ffi('void mgos_lcd_left_justify(void *)');
-  _blon: ffi('void mgos_lcd_blink_led_on(void *)');
-  _blof: ffi('void mgos_lcd_blink_led_off(void *)');
-  _rgb: ffi('void mgos_lcd_set_rgb(void *, int, int, int)');
-  _pwm: ffi('void mgos_lcd_set_pwm(void *, int, int)');
+  _p:   ffi('void mgos_lcd_print_string(void *, char *, int)'),
+  _clr: ffi('void mgos_lcd_clear(void *)'),
+  _ch:  ffi('void mgos_lcd_cursor_home(void *)'),
+  _sc:  ffi('void mgos_lcd_set_cursor(void *, int, int)'),
+  _dof: ffi('void mgos_lcd_display_off(void *)'),
+  _don: ffi('void mgos_lcd_display_on(void *)'),
+  _cof: ffi('void mgos_lcd_cursor_off(void *)'),
+  _con: ffi('void mgos_lcd_cursor_on(void *)'),
+  _bcof: ffi('void mgos_lcd_blink_cursor_off(void *)'),
+  _bcon: ffi('void mgos_lcd_blink_cursor_on(void *)'),
+  _sdl: ffi('void mgos_lcd_scroll_display_left(void *)'),
+  _sdr: ffi('void mgos_lcd_scroll_display_right(void *)'),
+  _ltr: ffi('void mgos_lcd_set_ltr(void *)'),
+  _rtl: ffi('void mgos_lcd_set_rtl(void *)'),
+  _rjst: ffi('void mgos_lcd_right_justify(void *)'),
+  _ljst: ffi('void mgos_lcd_left_justify(void *)'),
+  _blon: ffi('void mgos_lcd_blink_led_on(void *)'),
+  _blof: ffi('void mgos_lcd_blink_led_off(void *)'),
+  _rgb: ffi('void mgos_lcd_set_rgb(void *, int, int, int)'),
+  _pwm: ffi('void mgos_lcd_set_pwm(void *, int, int)'),
 
   // Define constants
   LCD_5x8DOTS: 0,
