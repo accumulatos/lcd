@@ -36,27 +36,21 @@ let LCD = {
   REG_GREEN: 3,
   REG_BLUE: 2,
 
-  // **`LCD.create(columns, lines)`**
-  // Create an LCD object.
+  // **`LCD.create(columns, lines, dotsize)`**
+  // Create an LCD object with dotsize (LCD.LCD_5x8DOTS or LCD.LCD_5x10DOTS)
+  // Note that 5x8 is the default for 2 line displays, 5x10 is only supported
+  // on some when running with 1 line.
   // Return value: an object with the methods described below, or
   // 'null' in case of a failure.
   // Example:
   // ```javascript
-  // let lcd = LCD.create(16, 2);
+  // let lcd = LCD.create(16, 2, LCD.LCD_5x8DOTS);
   // lcd.setRgb(64, 0, 64);
   // lcd.print("Hello, world!");
   // ```
-  create: function(columns, lines) {
-    let obj = Object.create(LCD._proto);
-    obj.lcd = DHT._crt(columns, lines, LCD_5x8DOTS);
-    return obj;
-  },
-
-  // **`LCD.create(columns, lines, dotsize)`**
-  // Create an LCD object with dotsize (eg LCD.LCD_5x10DOTS)
   create: function(columns, lines, dotsize) {
     let obj = Object.create(LCD._proto);
-    obj.lcd = DHT._crt(columns, lines, dotsize);
+    obj.lcd = LCD._crt(columns, lines, dotsize);
     return obj;
   },
 
@@ -76,7 +70,7 @@ let LCD = {
     // Return the LCD cursor to the zero position
     cursorHome: function() {
       LCD._ch(this.lcd);
-    }
+    },
     // **`lcd.setCursor(column, row)`**
     // Set the cursor position to the desired location
     setCursor: function(column, row) {
@@ -89,7 +83,7 @@ let LCD = {
     },
     // **`lcd.displayOn()`**
     // Turn the display back on having turned it off
-    displayOff: function() {
+    displayOn: function() {
       LCD._don(this.lcd);
     },
     // **`lcd.cursorOff()`**
